@@ -51,10 +51,13 @@ Procedure to use :
 
 **To import in postman and test follow the below procedure :**
 
-Copy the curl
-![img_2.png](img_2.png)
+_Copy the curl_
 
-Paste the curl in postman:
+![img_2.png](img_2.png)
+<br>
+
+_Paste the curl in postman:_
+
 ![img_3.png](img_3.png)
 
 Postman collection is ready to use to test the forecast apis responses
@@ -67,6 +70,8 @@ _**Examples :**_
 
 *Hourly Forecast*
 ![img.png](img.png)
+
+<br>
 
 *Forecast Summary*
 ![img_1.png](img_1.png)
