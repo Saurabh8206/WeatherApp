@@ -29,18 +29,17 @@ public class WeatherServiceTest {
     private WebUtil webUtil;
 
 
-
     @Test
     @Order(1)
     @DisplayName("This test will perform the successful http call with the rapidApi - SUCCESS")
     void testRapidApiGetHourlyForecastByLocationNameSuccess() throws URISyntaxException, IOException, InterruptedException {
 
         String location = "nonexistent-location";
-        String url =String.format(GET_HOURLY_FORECAST_BY_LOCATION_NAME_URL,location);
+        String url = String.format(GET_HOURLY_FORECAST_BY_LOCATION_NAME_URL, location);
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
-                .headers( "X-RapidAPI-Key", API_KEY,
+                .headers("X-RapidAPI-Key", API_KEY,
                         "X-RapidAPI-Host", API_HOST,
                         "Content-Type", "application/json")
                 .GET()
@@ -98,11 +97,11 @@ public class WeatherServiceTest {
     void testRapidApiGetHourlyForecastByLocationNameNotFound() throws Exception {
 
         String location = "nonexistent-location";
-        String url =String.format("https://forecast9.p.rapidapi.com/rapidapi/forecast/%s/hour/",location);
+        String url = String.format("https://forecast9.p.rapidapi.com/rapidapi/forecast/%s/hour/", location);
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
-                .headers( "X-RapidAPI-Key", API_KEY,
+                .headers("X-RapidAPI-Key", API_KEY,
                         "X-RapidAPI-Host", API_HOST,
                         "Content-Type", "application/json")
                 .GET()
@@ -119,11 +118,11 @@ public class WeatherServiceTest {
     void testRapidApiGetHourlyForecastByLocationNameUnauthorised() throws Exception {
 
         String location = "nonexistent-location";
-        String url =String.format(GET_HOURLY_FORECAST_BY_LOCATION_NAME_URL,location);
+        String url = String.format(GET_HOURLY_FORECAST_BY_LOCATION_NAME_URL, location);
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
-                .headers( "X-RapidAPI-Key", API_KEY,// Host is not provided
+                .headers("X-RapidAPI-Key", API_KEY,// Host is not provided
                         "Content-Type", "application/json")
                 .GET()
                 .build();
@@ -151,11 +150,11 @@ public class WeatherServiceTest {
     void testRapidApiGetForecastSummaryByLocationNameSuccess() throws URISyntaxException, IOException, InterruptedException {
 
         String location = "nonexistent-location";
-        String url =String.format(GET_FORECAST_SUMMARY_BY_LOCATION_NAME_URL,location);
+        String url = String.format(GET_FORECAST_SUMMARY_BY_LOCATION_NAME_URL, location);
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
-                .headers( "X-RapidAPI-Key", API_KEY,
+                .headers("X-RapidAPI-Key", API_KEY,
                         "X-RapidAPI-Host", API_HOST,
                         "Content-Type", "application/json")
                 .GET()
@@ -213,11 +212,11 @@ public class WeatherServiceTest {
     void testRapidApiGetForecastSummaryByLocationNameNotFound() throws Exception {
 
         String location = "nonexistent-location";
-        String url =String.format("https://forecast9.p.rapidapi.com/rapidapi/forecast/%s/hour/",location);
+        String url = String.format("https://forecast9.p.rapidapi.com/rapidapi/forecast/%s/hour/", location);
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
-                .headers( "X-RapidAPI-Key", API_KEY,
+                .headers("X-RapidAPI-Key", API_KEY,
                         "X-RapidAPI-Host", API_HOST,
                         "Content-Type", "application/json")
                 .GET()
@@ -235,11 +234,11 @@ public class WeatherServiceTest {
     void testRapidApiGetForecastSummaryByLocationNameUnauthorised() throws Exception {
 
         String location = "nonexistent-location";
-        String url =String.format(GET_FORECAST_SUMMARY_BY_LOCATION_NAME_URL,location);
+        String url = String.format(GET_FORECAST_SUMMARY_BY_LOCATION_NAME_URL, location);
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(new URI(url))
-                .headers( "X-RapidAPI-Key", API_KEY,// Host is not provided
+                .headers("X-RapidAPI-Key", API_KEY,// Host is not provided
                         "Content-Type", "application/json")
                 .GET()
                 .build();
