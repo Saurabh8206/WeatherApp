@@ -1,39 +1,66 @@
 package com.weather.forecasting.service;
 
 import com.weather.forecasting.util.WebUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.net.http.HttpResponse;
-import java.util.HashMap;
-import java.util.Map;
+
+import static com.weather.forecasting.constants.ApiConstants.*;
+
 
 @Service
+@Slf4j
 public class WeatherService {
-    private  static final String API_KEY = "3c8a9121a1msh0456ae7c567e070p1db45ejsn55a1c90c3526";
-    private  static final String API_HOST = "forecast9.p.rapidapi.com";
 
+    public String rapidApiGetHourlyForecastByLocationName(String location) {
 
-    public String rapidApiGetHourlyForecastByLocationName( String location )  {
-
-        String url = "https://example.com/api/hourly-forecast";
+        String url = String.format(GET_HOURLY_FORECAST_BY_LOCATION_NAME_URL, location);
 
         try {
-            Map<String, String> headers = new HashMap<>();
-            headers.put("x-api-key", API_KEY);
-            headers.put("X-RapidAPI-Host", API_HOST);
-            headers.put("Content-Type", "application/json");
 
-            HttpResponse<String> response = WebUtil.getRequest(url, String.valueOf(headers));
+            HttpResponse<String> response = WebUtil.getRequest(url,
+                    "X-RapidAPI-Key", API_KEY,
+                    "X-RapidAPI-Host", API_HOST,
+                    "Content-Type", "application/json");
 
             if (response.statusCode() == 200) {
+                log.info("Successfully fetched the response from RapidApi : " + response.statusCode());
                 return response.body();
+            } else if (response.statusCode() == 429) {
+                log.info("Exceeded the DAILY quota for Requests : " + response.statusCode());
+                return GET_HOURLY_FORECAST_BY_LOCATION_NAME;
             } else {
-                return "Error while calling Rest call : " + response.statusCode();
+                return " Error while calling Rest call : " + response.statusCode() + response.body();
             }
         } catch (Exception e) {
-            return "[{WeatherService.rapidApiGetHourlyForecastByLocationName}] Exception while fetching hourly forecast for location : { "+location+" } with exception ->>>"  + e.getMessage();
+            return "[{WeatherService.rapidApiGetHourlyForecastByLocationName}] Exception while fetching hourly forecast for location : { " + location + " } with exception ->>>" + e.getMessage();
         }
 
+    }
 
+    public String rapidApiGetForecastSummaryByLocationName(String location) {
+
+        String url = String.format(GET_FORECAST_SUMMARY_BY_LOCATION_NAME_URL, location);
+
+        try {
+
+            HttpResponse<String> response = WebUtil.getRequest(url,
+                    "X-RapidAPI-Key", API_KEY,
+                    "X-RapidAPI-Host", API_HOST,
+                    "Content-Type", "application/json");
+
+            if (response.statusCode() == 200) {
+                log.info("Successfully fetched the response from RapidApi : " + response.statusCode());
+                return response.body();
+            } else if (response.statusCode() == 429) {
+                log.info("Exceeded the DAILY quota for Requests : " + response.statusCode());
+                return GET_FORECAST_SUMMARY_BY_LOCATION_NAME;
+            } else {
+                return " Error while calling Rest call : " + response.statusCode() + response.body();
+            }
+        } catch (Exception e) {
+            return "[{WeatherService.rapidApiGetHourlyForecastByLocationName}] Exception while fetching forecast summary for location : { " + location + " } with exception ->>>" + e.getMessage();
+        }
     }
 }
