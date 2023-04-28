@@ -2,7 +2,8 @@ package com.weather.forecasting.constants;
 
 public class ApiConstants {
 
-    public static final String API_KEY = "3c8a9121a1msh0456ae7c567e070p1db45ejsn55a1c90c3526";
+    public static final String API_KEY = "487406959amshcfc707a9ca07290p181aacjsn8ddf84849bc2";
+    public static final String EXCEEDED_API_KEY = "3c8a9121a1msh0456ae7c567e070p1db45ejsn55a1c90c3526";
     public static final String API_HOST = "forecast9.p.rapidapi.com";
 
     public static final String GET_FORECAST_SUMMARY_BY_LOCATION_NAME_URL = "https://forecast9.p.rapidapi.com/rapidapi/forecast/%s/summary/";
